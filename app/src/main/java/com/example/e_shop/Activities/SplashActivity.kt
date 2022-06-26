@@ -1,23 +1,21 @@
-package com.example.e_shop
+package com.example.e_shop.Activities
 
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.ActionBar
-import androidx.core.view.ViewCompat
+import com.example.e_shop.R
 
 class SplashActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        getSupportActionBar()?.hide() // hide action and ttile bar
+      getSupportActionBar()?.hide() // hide action and ttile bar
         //following code use for full screen view of splash screen
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -31,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
         //following code put delay of 2.5 sec before main activity render
         @Suppress("DEPRECATION")
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
         },2500
         )

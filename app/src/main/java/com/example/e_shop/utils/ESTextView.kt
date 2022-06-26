@@ -7,13 +7,13 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
 
-class MSPTextViewBold(context: Context, attrs: AttributeSet) : AppCompatTextView(context,attrs) {
+class ESTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(context,attrs) {
     init {
         appFont()
     }
 
     private fun appFont() {
-        val typeface : Typeface = Typeface.createFromAsset(context.assets,"Montserrat-Bold.ttf")
+        val typeface : Typeface = Typeface.createFromAsset(context.assets,"Montserrat-Regular.ttf")
         setTypeface(typeface)
     }
 
