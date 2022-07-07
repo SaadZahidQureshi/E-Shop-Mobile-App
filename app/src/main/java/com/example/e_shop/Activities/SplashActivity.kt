@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-      getSupportActionBar()?.hide() // hide action and ttile bar
+      getSupportActionBar()?.hide() // hide action and title bar
         //following code use for full screen view of splash screen
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
