@@ -4,6 +4,7 @@
     <string name="title_login">LOGIN</string>
     <string name="et_hint_email_id">Email ID</string>
     <string name="et_hint_password">Password</string>
+    <string name="et_hint_Mobile_number">Mobile Number</string>
     <string name="lbl_forgot_password">Forgot Password?</string>
     <string name="btn_lbl_login">Login</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
@@ -20,6 +21,7 @@
 
     <string name="login">Login</string>
     <string name="btn_lbl_register">Register</string>
+    <string name="btn_lbl_save">save</string>
     <string name="error_msg_enter_first_name">Please enter first name.</string>
     <string name="error_msg_enter_last_name">Please enter last name.</string>
     <string name="error_msg_enter_email">Please enter email.</string>
@@ -29,6 +31,25 @@
     <string name="error_msg_agree_terms_conditions">Please  agree terms and conditions.</string>
     <string name="registery_successfull">Registery Successfull.</string>
     <string name="please_wait">Please Wait&#8230;</string>
+
+    <string name="title_forgot_password">FORGOT PASSWORD?</string>
+    <string name="btn_lbl_submit">Submit</string>
+    <string name="forgot_password_title_description">Enter your Email ID, we \'ll send you an email to reset your password.</string>
+
+    <string name="email_sent_success">Email sent sccessfully to reset your password.</string>
+    <string name="register_success">you are registered successfully.</string>
+
+    <string name="title_profile">PROFILE</string>
+    <string name="et_hint_mobile_number">Mobile Number</string>
+    <string name="rb_lbl_male">MALE</string>
+    <string name="rb_lbl_female">FEMALE</string>
+    <string name="btl_lbl_save">Save</string>
+    <string name="read_storage_permission_denied">Oops! you just denied the permissions for         storage. you can also allow it from storage.</string>
+    <string name="image_selection_failed">Image selection failed!</string>
+    <string name="data_cannot_be_null">Request canceled!. And image selection failed.</string>
+    <string name="err_msg_enter_mobile_number">please enter the mobile number</string>
+    <string name="your_details_are_valid">your details are valid. you can update the data.</string>
+    <string name="your_profile_updated_successfully">Your profile was updated successfully.</string>
 
 
 </resources>

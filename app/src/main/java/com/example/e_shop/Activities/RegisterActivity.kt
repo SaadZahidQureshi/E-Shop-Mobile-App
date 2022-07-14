@@ -1,24 +1,20 @@
 package com.example.e_shop.Activities
 
-import android.content.Intent
+
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.text.TextUtils
-import android.util.Patterns
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import com.example.e_shop.FireStore.fireStoreClass
 import com.example.e_shop.R
+import com.example.e_shop.models.User
 import com.example.e_shop.utils.ESButton
 import com.example.e_shop.utils.ESEditText
-import com.example.e_shop.utils.ESTextView
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -45,9 +41,7 @@ class RegisterActivity : BaseActivity() {
         //Launch the Login activity here
         val tv_login: TextView = findViewById<TextView>(R.id.tv_login)
         tv_login.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressed()
         }
 
 
@@ -59,7 +53,7 @@ class RegisterActivity : BaseActivity() {
         }
 
 
-        var btn_register :ESButton = findViewById(R.id.btn_register)
+        val btn_register :ESButton = findViewById(R.id.btn_register)
         btn_register.setOnClickListener(){
             registerUser()
 //            var et_email :ESEditText = findViewById(R.id.et_email)
@@ -79,12 +73,12 @@ class RegisterActivity : BaseActivity() {
 
 private fun validateRegisterDetials(): Boolean{
 
-    var et_first_name :ESEditText = findViewById(R.id.et_first_name)
-    var et_last_name :ESEditText = findViewById(R.id.et_last_name)
-    var et_email :ESEditText = findViewById(R.id.et_email)
-    var et_password :ESEditText = findViewById(R.id.et_password)
-    var et_confirm_password :ESEditText = findViewById(R.id.et_confirm_password)
-    var cb_terms_and_conditions :CheckBox = findViewById(R.id.cb_terms_and_conditions)
+    val et_first_name :ESEditText = findViewById(R.id.et_first_name)
+    val et_last_name :ESEditText = findViewById(R.id.et_last_name)
+    val et_email :ESEditText = findViewById(R.id.et_email)
+    val et_password :ESEditText = findViewById(R.id.et_password)
+    val et_confirm_password :ESEditText = findViewById(R.id.et_confirm_password)
+    val cb_terms_and_conditions :CheckBox = findViewById(R.id.cb_terms_and_conditions)
 
 
     return when{
@@ -100,7 +94,7 @@ private fun validateRegisterDetials(): Boolean{
             false
         }
 
-        TextUtils.isEmpty( et_email.text.toString().trim{ it <= ' '}) || Patterns.EMAIL_ADDRESS.matcher(et_email.toString()).matches() ->
+        TextUtils.isEmpty( et_email.text.toString().trim{ it <= ' '}) ->
         {
             showErrorSnackBar(resources.getString(R.string.error_msg_enter_email),true)
             false
@@ -154,29 +148,56 @@ private fun validateRegisterDetials(): Boolean{
             if(validateRegisterDetials()){
 
                 showProgressDialog()
-                var et_email :ESEditText = findViewById(R.id.et_email)
-                var et_password :ESEditText = findViewById(R.id.et_password)
+                val et_email :ESEditText = findViewById(R.id.et_email)
+                val et_password :ESEditText = findViewById(R.id.et_password)
 
                 val email :String = et_email.text.toString().trim{ it <= ' '}
                 val password :String = et_password.text.toString().trim{ it <= ' '}
 
+
+                val et_first_name :ESEditText = findViewById(R.id.et_first_name)
+                val et_last_name :ESEditText = findViewById(R.id.et_last_name)
+
+
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
                     .addOnCompleteListener(
                         OnCompleteListener { task ->
-                            hideProgressDialog()
+
                             if (task.isSuccessful){
                                 val firebaseUser : FirebaseUser = task.result!!.user!!
-                                showErrorSnackBar(
-                                    "yoy registered successfully. you userID is ${firebaseUser.uid}",
-                                    false)
+
+                                val user = User(
+                                    firebaseUser.uid,
+                                    et_first_name.text.toString().trim{ it <= ' '},
+                                    et_last_name.text.toString().trim{ it <= ' '},
+                                    et_email.text.toString().trim{ it <= ' '}
+                                )
+
+                                fireStoreClass().registerUser(this@RegisterActivity,user)
+
+//                                showErrorSnackBar(
+//                                    "yoy registered successfully. you userID is ${firebaseUser.uid}",
+//                                    false)
+//                                FirebaseAuth.getInstance().signOut()
+//                                finish()
                             }
                             else{
+                                hideProgressDialog()
                                 showErrorSnackBar(task.exception!!.message.toString(),true)
                             }
                         }
                     )
             }
         }
+
+    fun userRegisterationSuccess(){
+        hideProgressDialog()
+        Toast.makeText(
+            this@RegisterActivity,
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
 
     }
 

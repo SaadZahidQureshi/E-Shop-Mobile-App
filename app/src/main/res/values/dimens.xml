@@ -23,5 +23,17 @@
     <dimen name="progress_bar_size">50dp</dimen>
     <dimen name="progress_text_marginstart">16dp</dimen>
     <dimen name="progress_textsize">16sp</dimen>
+    <dimen name="forgot_password_title_textSize">18sp</dimen>
+    <dimen name="forgot_password_title_description_textSize">14dp</dimen>
+
+    <dimen name="user_image_backgroung_strok">4dp</dimen>
+    <dimen name="user_image_background_corner_radius">10dp</dimen>
+    <dimen name="profile_user_image_size">150dp</dimen>
+    <dimen name="profile_user_image_margin_top">50dp</dimen>
+    <dimen name="profile_user_photo_margin">3dp</dimen>
+    <dimen name="profile_radio_btn_height">40dp</dimen>
+    <dimen name="profile_radio_btn_marginStartEnd">3dp</dimen>
+    <dimen name="gender_radio_btn_radius">5dp</dimen>
+    <dimen name="gender_radio_btn_strok_width">1dp</dimen>
 
 </resources>
